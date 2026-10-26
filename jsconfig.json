@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "assets/*": ["src/assets/*"],
+      "api/*": ["src/api/*"],
+      "views/*": ["src/views/*"],
+      "components/*": ["src/components/*"],
+      "store/*": ["src/store/*"],
+      "utils/*": ["src/utils/*"],
+      "styles/*": ["src/styles/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,18 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 64px 48px calc(64px + env(safe-area-inset-bottom));
+  background: @card-bg;
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 560px;
+    margin-top: 48px;
+  }
+}

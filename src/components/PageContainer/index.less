@@ -1,0 +1,25 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--app-page-bg);
+
+  &__navbar {
+    background: @card-bg;
+    border-bottom: 1px solid @border-color;
+  }
+
+  &__body {
+    flex: 1;
+    padding: @page-padding;
+  }
+
+  &__footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    padding: 24px @page-padding;
+    background: @card-bg;
+    border-top: 1px solid @border-color;
+  }
+}

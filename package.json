@@ -1,0 +1,48 @@
+{
+  "name": "react-h5-template",
+  "private": true,
+  "version": "0.1.0",
+  "description": "React 移动端 H5 框架，工程结构参考 weixue-cms-h5",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "build:test": "vite build --mode test",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,less,css,json}\" \"*.{js,json,html,md}\""
+  },
+  "dependencies": {
+    "amfe-flexible": "^2.2.1",
+    "antd-mobile": "^5.43.0",
+    "axios": "^1.20.0",
+    "dayjs": "^1.11.23",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.4",
+    "vconsole": "^3.15.1",
+    "weixin-js-sdk": "^1.6.5",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@vitejs/plugin-react": "^6.1.2",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "less": "^4.9.1",
+    "postcss": "^8.5.31",
+    "postcss-pxtorem": "^6.1.0",
+    "prettier": "^3.9.10",
+    "vite": "^8.3.4",
+    "vite-plugin-compression2": "^2.5.3"
+  }
+}

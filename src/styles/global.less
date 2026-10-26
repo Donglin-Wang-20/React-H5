@@ -1,0 +1,82 @@
+// ===== 全局样式 =====
+// 覆盖 antd-mobile 的 CSS 变量（双 :root 提高优先级，不受样式加载顺序影响）
+:root:root {
+  --adm-color-primary: @brand-color;
+  --adm-color-success: @success-color;
+  --adm-color-warning: @warning-color;
+  --adm-color-danger: @danger-color;
+  --adm-color-text: @text-color;
+  --adm-color-text-secondary: @text-color-secondary;
+  --adm-color-weak: @text-color-placeholder;
+  --adm-color-border: @border-color;
+  --adm-color-box: @page-bg;
+  --adm-color-fill-content: @page-bg;
+  --app-page-bg: @page-bg;
+  --app-text-color: @text-color;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  height: 100%;
+}
+
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28px;
+  line-height: 1.5;
+  color: @text-color;
+  background: @page-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // 防止 iOS 微信内置浏览器字体自动放大
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+a {
+  color: @brand-color;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
