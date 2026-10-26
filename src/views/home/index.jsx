@@ -1,6 +1,6 @@
 import { Button } from 'antd-mobile'
 import { useNavigate } from 'react-router-dom'
-import logo from '@/assets/logo.png'
+import reactLogo from '@/assets/react.svg'
 import settings from '@/settings'
 import './index.less'
 
@@ -29,7 +29,7 @@ export default function Home() {
     <div className='home'>
       <header className='home__hero'>
         <div className='home__logo-wrap'>
-          <img className='home__logo' src={logo} alt={settings.title} />
+          <img className='home__logo' src={reactLogo} alt='React' />
         </div>
         <p className='home__eyebrow'>WEIXUE CMS · H5</p>
         <h1 className='home__title'>{settings.title} H5</h1>
