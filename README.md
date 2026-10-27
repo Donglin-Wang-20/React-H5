@@ -1,6 +1,6 @@
 # React-H5
 
-基于 `weixue-cms-h5` 的目录结构和工程约定搭建的 **React 移动端 H5 框架**。业务页面尚未实现，目前提供可直接开始迁移页面的工程骨架。
+基于 `weixue-cms-h5` 的目录结构和工程约定搭建的 **React 移动端 H5 框架**。工程骨架已完成，并已迁移通用落地页；其余业务页面可以继续按同样的方式迁移。
 
 ## 技术栈
 
@@ -42,6 +42,8 @@ npm run format       # Prettier 格式化
 ```text
 src/
 ├── api/                     # 接口层：一个业务域一个文件
+│   ├── eventTracking.js     # 埋点上报
+│   ├── generalLandingPage.js# 通用落地页接口
 │   ├── home.js              # 示例接口
 │   └── index.js             # API 统一出口
 ├── assets/                  # 图片、字体等静态资源
@@ -55,7 +57,8 @@ src/
 │   ├── index.jsx            # 路由入口，自动扫描 modules
 │   ├── lazy.jsx             # 路由级懒加载封装
 │   └── modules/
-│       └── home.jsx         # 首页 + 示例页路由
+│       ├── home.jsx         # 首页 + 示例页路由
+│       └── landing.jsx      # 通用落地页路由
 ├── store/
 │   ├── index.js
 │   └── modules/
@@ -73,6 +76,7 @@ src/
 ├── views/
 │   ├── home/                # 首页（非懒加载）
 │   ├── demo/                # 框架示例页（懒加载）
+│   ├── generalLandingPage/  # 通用落地页（长图 + 埋点 + 小程序跳转）
 │   └── error-page/          # 404 与路由异常页
 ├── App.jsx                  # ConfigProvider + 全局初始化
 ├── main.jsx                 # 应用入口
@@ -115,6 +119,30 @@ export default [
 - 未匹配路由由 `path: '*'` 渲染 404 页面。
 - 需要嵌套路由时，在路由对象中使用 `children`。
 - 如果必须使用 history 模式，将 `createHashRouter` 换成 `createBrowserRouter`，并在网关或 Nginx 配置 `index.html` fallback。
+
+## 已实现页面
+
+### 通用落地页 `/generalLandingPage`
+
+页面文件：`src/views/generalLandingPage/index.jsx`
+
+访问方式（`pageId` 放在 hash 内、hash 外都可以）：
+
+```text
+http://localhost:1234/#/generalLandingPage?pageId=xxx
+http://localhost:1234/?pageId=xxx#/generalLandingPage
+```
+
+处理流程：
+
+1. 从 URL 读取 `pageId`，调用 `/distribution/system/landingPage/selectById`。
+2. 展示接口返回的 `pageUrl` 长图，底部固定一个跳转按钮。
+3. 自动上报 `OldQuantityActivation` 埋点（`platform: 1`）。
+4. 有 `miniPageUrl`：最多等待埋点 500ms，然后通过 `location.href` 跳转。
+5. 没有 `miniPageUrl`：仍然上报埋点，并提示“页面链接生成失败”。
+6. 没有 `pageId`、接口失败或没有 `pageUrl`：展示“链接失效”。
+
+开发注意：React StrictMode 会重复执行 effect，页面用“同一个 `pageId` 共用一个请求 Promise”的方式，避免重复请求和重复埋点。
 
 ## 请求层
 
@@ -228,8 +256,8 @@ const increment = useAppStore((state) => state.increment)
 
 框架只负责工程基建，以下业务能力需要按页面迁移时补充：
 
-- 具体业务页面与页面级组件
+- 除通用落地页外的其他业务页面与页面级组件
 - 登录、支付、订单等完整业务流程
-- 埋点上报（原 `utils/eventTracking.js`）
+- 通用埋点工具（通用落地页已内置该页面的埋点）
 - 地区数据、海报生成、PDF 预览等页面级依赖
 - 多语言、权限路由等扩展能力
